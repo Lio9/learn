@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-x = 1
-print(f'{x+1}')   # Python 3.6
+list = ['Google', 'Runoob', 1997, 2000]
 
-x = 1
-print(f'{x+1=}')   # Python 3.8
+print("原始列表 : ", list)
+del list[2]
+print("删除第三个元素 : ", list)
