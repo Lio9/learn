@@ -89,7 +89,8 @@ def search_book():
 # 主菜单
 def main_menu():
     global html
-    title_list = html.xpath('.//div[@class="wrap"]//div[@class="title"]/strong/text()')
+    title_list = html.xpath(
+        './/div[@class="wrap"]//div[@class="title"]/strong/text()')
     while True:
         clear()
         print("--------------------")
@@ -114,7 +115,8 @@ def main_menu():
 # 分列表菜单 (首页列表)
 def category_menu(index):
     global html
-    item_box = html.xpath('.//div[@class="wrap"]/div[contains(@class,"mlist")]')[index]
+    item_box = html.xpath(
+        './/div[@class="wrap"]/div[contains(@class,"mlist")]')[index]
     item_list = item_box.xpath('.//div[@class="box"]/ul/li/a//text()')
     item_url_list = item_box.xpath('.//div[@class="box"]/ul/li/a/@href')
     more_url_list = item_box.xpath('.//div[@class="title"]/a/@href')
@@ -164,7 +166,8 @@ def new_menu(url):
     # file.close()
 
     new_html = etree.HTML(new_dom, etree.HTMLParser())
-    content_list = new_html.xpath('.//div[@class="wrap"]/div[@id="content"]/ul/li')
+    content_list = new_html.xpath(
+        './/div[@class="wrap"]/div[@id="content"]/ul/li')
     print('读取完成!')
     while True:
         clear()
@@ -216,7 +219,8 @@ def more_menu(url):
         print("--------------------")
         print("[ b ] 返回")
         for i in range(len(content_list)):
-            print("[ {} ] {}".format(i, content_list[i].xpath('.//dt/a/text()')[0]))
+            print("[ {} ] {}".format(
+                i, content_list[i].xpath('.//dt/a/text()')[0]))
         if len(content_list) == 0:
             print("没有更多内容了")
         print("--------------------")
@@ -229,7 +233,8 @@ def more_menu(url):
         elif command == 'b':
             return
         elif 0 <= be_int(command) < len(content_list):
-            detail_menu(content_list[be_int(command)].xpath('.//dt/a/@href')[0])
+            detail_menu(content_list[be_int(command)
+                                     ].xpath('.//dt/a/@href')[0])
         elif command.startswith('p') and 0 < be_int(command[1:]):
             print("正在加载第 {} 页...".format(command[1:]))
             more_dom = more_page(url, be_int(command[1:]))
@@ -277,7 +282,8 @@ def search_menu(keyword):
         print("--------------------")
         print("[ b ] 返回")
         for i in range(len(content_list)):
-            print("[ {} ] {}".format(i, content_list[i].xpath('.//dt/a/text()')[0]))
+            print("[ {} ] {}".format(
+                i, content_list[i].xpath('.//dt/a/text()')[0]))
         if len(content_list) == 0:
             print("没有更多内容了")
         print("--------------------")
@@ -290,7 +296,8 @@ def search_menu(keyword):
         elif command == 'b':
             return
         elif 0 <= be_int(command) < len(content_list):
-            detail_menu(content_list[be_int(command)].xpath('.//dt/a/@href')[0])
+            detail_menu(content_list[be_int(command)
+                                     ].xpath('.//dt/a/@href')[0])
         elif command.startswith('p') and 0 < be_int(command[1:]):
             print("正在加载第 {} 页...".format(command[1:]))
             more_dom = search_page(keyword, be_int(command[1:]))
@@ -328,7 +335,8 @@ def detail_menu(url):
         print("[ b ] 返回")
         print("[ d ] 下载")
         # if [0].strip() == ""
-        print("[ 标题 ] {}".format("".join(detail_html.xpath('.//h1/text()')).strip()))
+        print("[ 标题 ] {}".format(
+            "".join(detail_html.xpath('.//h1/text()')).strip()))
         print("[ 大小 ] {}".format(detail[0][9:]))
         print("[ 详情 ]")
         for i in range(len(detail)):
@@ -342,7 +350,8 @@ def detail_menu(url):
         elif command == 'b':
             return
         elif command == 'd':
-            down_url = detail_html.xpath('.//div[@class="pagefujian"]/div[@class="down_2"]/a[@title="点击下载"]/@href')[0]
+            down_url = detail_html.xpath(
+                './/div[@class="pagefujian"]/div[@class="down_2"]/a[@title="点击下载"]/@href')[0]
             download_menu(down_url)
         else:
             input("请输入正确的指令")
@@ -365,7 +374,8 @@ def download_menu(url):
         print('请求出错,错误代码:{}'.format(str(html.status_code)))
         return False
     down_html = etree.HTML(down_dom, etree.HTMLParser())
-    down_list = down_html.xpath('.//div[@class="panel"]/div[@class="panel-body"]/span[@class="downfile"]')
+    down_list = down_html.xpath(
+        './/div[@class="panel"]/div[@class="panel-body"]/span[@class="downfile"]')
     while True:
         clear()
         print("--------------------")
@@ -381,7 +391,8 @@ def download_menu(url):
             return
         elif 0 <= be_int(command) < len(down_list):
             # webbrowser.open_new_tab(down_list[be_int(command)].xpath('.//a/@href')[0])
-            os.system('start {}'.format(down_list[be_int(command)].xpath('.//a/@href')[0]))
+            os.system('start {}'.format(
+                down_list[be_int(command)].xpath('.//a/@href')[0]))
             return
         else:
             input("请输入正确的指令")

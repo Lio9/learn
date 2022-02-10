@@ -11,12 +11,15 @@ loc_lang = locale.getdefaultlocale()
 
 # 代码中用到的正则匹配模式字符串，提取出来以便不同语言系统使用，默认支持中文英文，其他语言需要更改匹配语句
 if loc_lang[0] == "zh_CN":
-    re_pattern = ["所有用户配置文件 : (.*)\r", "安全密钥               : 不存在", "关键内容            : (.*)\r"]
+    re_pattern = [
+        "所有用户配置文件 : (.*)\r", "安全密钥               : 不存在", "关键内容            : (.*)\r"]
 else:
-    re_pattern = ["All User Profile     : (.*)\r", "Security key           : Absent", "Key Content            : (.*)\r"]
+    re_pattern = [
+        "All User Profile     : (.*)\r", "Security key           : Absent", "Key Content            : (.*)\r"]
 
 # 如果 capture_output 设为 true，stdout 和 stderr 将会被捕获
-cmd_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode('gbk')
+cmd_output = subprocess.run(
+    ["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode('gbk')
 # print(cmd_output)
 wifi_names = (re.findall(re_pattern[0], cmd_output))
 # print(wifi_names)

@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-tup = ('Google', 'Runoob', 1997, 2000)
-
-print(tup)
-del tup
-print("删除后的元组 tup : ")
-print(tup)
+x = 10
+if x > 5:
+    raise Exception('x 不能大于 5。x 的值为: {}'.format(x))
