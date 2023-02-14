@@ -1,8 +1,8 @@
 public class 线程的创建 {
 
     
-    public static void main(String[] args) {
-        demo5();
+    public static void main(String[] args) throws InterruptedException {
+        demo6();
     }
 
     /*
@@ -82,6 +82,19 @@ public class 线程的创建 {
         } catch (InterruptedException e) {
         }
         System.out.println("main end...");
+    }
+
+    /*
+     * 一个线程还可以等待另一个线程直到其运行结束。例如，main线程在启动t线程后，可以通过t.join()等待t线程结束后再继续运行
+     */
+    public static void demo6() throws InterruptedException{
+        Thread t = new Thread(() -> {
+            System.out.println("hello");
+        });
+        System.out.println("start");
+        t.start();
+        t.join();
+        System.out.println("end");
     }
 
 }
