@@ -26,7 +26,7 @@
 ### 从一个commit里移除一个文件
 将文件从git中删除
 ```shell
-    $ git rm -cached TheRemoveFilePath
+    $ git rm --cached TheRemoveFilePath
     # 修改此次提交
     $ git commit --amend
 ```
