@@ -1,3 +1,2 @@
-vue/vue library/vue.global.js
-vue/vue library/vue.js
-vue/vue library/vue.min.js
+# 默认忽略的文件
+/.idea
