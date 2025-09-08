@@ -11,3 +11,21 @@ git remote add gitee https://gitee.com/Lio9/learn.git
 ```bash
 git remote -v
 ```
+
+git的config
+```bash
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = https://github.com/Lio9/learn.git
+	url = https://gitee.com/Lio9/learn.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+```
