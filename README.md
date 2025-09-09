@@ -29,3 +29,6 @@ git的config
 	remote = origin
 	merge = refs/heads/master
 ```
+
+idea创建jdk1.8项目
+> https://start.aliyun.com/
